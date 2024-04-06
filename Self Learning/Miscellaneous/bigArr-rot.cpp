@@ -2,7 +2,13 @@
 #include <iostream>
 #include <cstdlib>
 #include<unistd.h>
+#include <chrono>
 using namespace std;
+using namespace std::chrono;
+
+/* for sleep in Windows
+#include<windows.h>
+Sleep(milliseconds); */
 
 void arrayRotation(int arr[], int rot, int size);
 
@@ -26,7 +32,14 @@ int main() {
   cout << "\n";
   cout << "Enter number of rotations you want to make: ";
   cin >> rot;
+
+  // Get starting timepoint
+  auto start = high_resolution_clock::now();
+  
   arrayRotation(arr, rot, size);
+
+  // Get ending timepoint
+  auto stop = high_resolution_clock::now();
   
   //usleep(1 * microsecond); // sleeps for 1.5 second
   cout << "\n\nArray after " << rot << " rotations." << endl;
@@ -34,6 +47,10 @@ int main() {
   for(int i=0; i<size; i++) {
     cout << arr[i] << "\n";
   }
+
+  auto duration = duration_cast<microseconds>(stop - start);
+
+  cout << "\n\nTime taken to perform " << rot << " rotations:-\n" << duration.count() << " microseconds" << endl;
 
   return 0;
 }
