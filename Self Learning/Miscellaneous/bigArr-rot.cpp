@@ -4,6 +4,8 @@
 #include<unistd.h>
 using namespace std;
 
+void arrayRotation(int arr[], int rot, int size);
+
 int main() {
   unsigned int microsecond = 1500000;
   int size = 20000;
@@ -13,32 +15,40 @@ int main() {
     arr[i] = rand() % eRange;
     //cout << arr[i];
   }
-
+  
   cout << "Original Array:- " << endl;
-  usleep(1 * microsecond);//sleeps for 1.5 second
+  //usleep(1 * microsecond); // sleeps for 1.5 second
   for(int i=0; i<size; i++) {
     int p=i;
     cout << p+1 << ".\t\t" << arr[i] << "\n";
   }
+  int rot;
   cout << "\n";
-  int rot = 3;
+  cout << "Enter number of rotations you want to make: ";
+  cin >> rot;
+  arrayRotation(arr, rot, size);
+  
+  //usleep(1 * microsecond); // sleeps for 1.5 second
+  cout << "\n\nArray after " << rot << " rotations." << endl;
+  usleep(1 * microsecond); // sleeps for 1.5 second
+  for(int i=0; i<size; i++) {
+    cout << arr[i] << "\n";
+  }
+
+  return 0;
+}
+
+void arrayRotation(int arr[], int rot, int size) {
   for(int i=1; i<=rot; i++) {
     int temp = arr[0];
     for(int j=0; j<size-1; j++) {
       arr[j] = arr[j+1];
     }
     arr[size-1] = temp;
-    cout << "\nRotation " << i << ":-" << endl;
+    /*cout << "\nRotation " << i << ":-" << endl;
     usleep(1 * microsecond);//sleeps for 1.5 second
     for(int i=0; i<size; i++) {
       cout << arr[i] << "\n";
-    }
+    }*/
   }
-
-  /*cout << "\n\nArray after " << rot << " rotations." << endl;
-  for(int i=0; i<size; i++) {
-    cout << arr[i] << "\t";
-  }*/
-
-  return 0;
 }
