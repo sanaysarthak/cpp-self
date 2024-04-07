@@ -45,22 +45,24 @@ class Box {
         }
         
         // Binary (Relational <) Operator Overloading
-        friend bool operator<(Box &A, Box &B) {
-            if ( (A.l < B.l) || ((A.b < B.b) && (A.l == B.l)) || ((A.h < B.h) && (A.b == B.b) && (A.l==B.l)) )
-                return true;
-            else
-                return false;
-        }
+        friend bool operator<(Box &A, Box &B);
         
         // Insertion (<<) Operator Overloading
-        friend ostream &operator<<(ostream &output, Box c) {
-            output << c.l << " " << c.b << " " << c.h;
-            return output;
-        }
+        friend ostream &operator<<(ostream &output, Box c);
 };
 
-
+bool operator<(Box &A, Box &B) {
+    if ( (A.l < B.l) || ((A.b < B.b) && (A.l == B.l)) || ((A.h < B.h) && (A.b == B.b) && (A.l==B.l)) )
+        return true;
+    else
+        return false;
+ }
  
+ostream &operator<<(ostream &output, Box c) {
+    output << c.l << " " << c.b << " " << c.h;
+    return output;
+};
+
 
 void check2()
 {
