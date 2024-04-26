@@ -21,4 +21,5 @@ int main() {
 	Dog d1;
 	d1.eat(); // calling member function of parent (base) class using object of child (derived) class.
 	d1.bark();
+	return 0;
 }
